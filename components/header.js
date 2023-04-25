@@ -10,7 +10,7 @@ export default function Header() {
                <header className={styles.headerMain}>
                     <div className={styles.headerLeft}>
                          <Link href="/" className={styles.imgLink}>
-                              <Image src="/assets/svg/logo-digitas.svg" width={90} height={13} alt='Digitas Peru :: Logo' className={styles.itemLogo} />
+                              <Image src="/assets/svg/logo-digitas.svg" height={30} width={30} alt='Digitas Peru :: Logo'  />
                          </Link>
                          <nav>
                               <Link href="/work" className={ router.pathname === '/work' ? styles.active : '' }>

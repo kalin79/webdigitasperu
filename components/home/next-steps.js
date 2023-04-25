@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -9,17 +9,12 @@ import { gsap } from "gsap"
 
 export default function NextSteps() {
 
-     let animationReel = gsap
+     const [gsapReel, setGsapReel] = useState(null)
+     const [hover, setHover] = useState(false)
+     const boolAnimation = useRef()     
 
-     let boolAnimation = false
 
-     let  elementCursor,
-          element
-     
-     let  mouseX = 0,
-          mouseY = 0
-
-     const reelDinamic = (texto) => {
+     const reelDinamic = async (texto) => {
          
           document.querySelector('.reelBoxAnimation .reelAnimation').innerHTML = ''
           let node, node2,textnode
@@ -27,6 +22,7 @@ export default function NextSteps() {
           const pageWidth  = document.documentElement.scrollWidth
           let w_element = 0
           let total_div = 0
+          let _gsapReel = gsap
           node = document.createElement("div")
           node2 = document.createElement("h4")
           textnode = document.createTextNode(texto)
@@ -42,7 +38,7 @@ export default function NextSteps() {
                     w_element = document.querySelector('.reelBoxAnimation .reelAnimation div').clientWidth
                }
                const items = Math.round(pageWidth / w_element)  + 2             
-               total_div = w_element * items
+               total_div = w_element * items 
                
                for ( let i=1; i <= (items - 1); i++){
                     node = document.createElement("div")
@@ -53,15 +49,15 @@ export default function NextSteps() {
                     reel.appendChild(node)
                }
 
-               animationReel.set('.reelBoxAnimation .reelAnimation', {x: (total_div - w_element) })
+               _gsapReel.set('.reelBoxAnimation .reelAnimation', {x: (total_div - w_element) })
 
 
           }, 10)
 
           setTimeout(function(){
-               animationReel.set('.reelBoxAnimation .reelAnimation div', {x: (i) => i * -w_element})
-               animationReel.set('.reelBoxAnimation', {opacity: 1})
-               animationReel.to('.reelBoxAnimation .reelAnimation div', {
+               _gsapReel.set('.reelBoxAnimation .reelAnimation div', {x: (i) => i * -w_element})
+               _gsapReel.set('.reelBoxAnimation', {opacity: 1})
+               _gsapReel.to('.reelBoxAnimation .reelAnimation div', {
                     duration: 10,
                     ease: 'none',
                     x: `-=${total_div}`,
@@ -71,90 +67,87 @@ export default function NextSteps() {
                     repeat: -1
                })
           }, 15)
+
+          setGsapReel(_gsapReel)
           
      }
 
-     const deletedElementReel = (e) => {
+     const deletedElementReel = () => {
+
           document.querySelector('.reelBoxAnimation .reelAnimation').innerHTML = ''
-          if (typeof animationReel != "undefined"){
-               animationReel.killTweensOf('.reelBoxAnimation .reelAnimation')
-               animationReel.killTweensOf('.reelBoxAnimation .reelAnimation div')
+          
+          if (gsapReel != null){
+               gsapReel.killTweensOf('.reelBoxAnimation .reelAnimation')
+               gsapReel.killTweensOf('.reelBoxAnimation .reelAnimation div')
               
-               animationReel.set('.reelBoxAnimation', {opacity: 0})
+               gsapReel.set('.reelBoxAnimation', {opacity: 0})
           }else{
                console.log('no existe')
           }
      }
 
      const  handleMouseEnter = ( async (texto,id,e) => {
-          // console.log(texto)
+          // console.log(hover)
           await deletedElementReel()
-          if (!boolAnimation) {
-               boolAnimation = true
-               const elem = e.target
-               let elemsA =  document.querySelectorAll('.boxNexts a')
-               let elmentReel = document.querySelector('.reelBoxAnimation')
-               // gsap.set(elem,{zIndex: 10})
-               await elemsA.forEach((element) => {
-                    element.classList.add('isOpacity')
-                    element.style.zIndex = 2
-               })
-               elem.style.zIndex = 10
-               elmentReel.style.zIndex = 3
-               // console.log(elemsA)
-               reelDinamic(texto)
-               
+         
+          const elementCursor = document.querySelector(`#next-${id} .viewCursor`)
+       
+          const elem = e.target
+          let elemsA =  document.querySelectorAll('.boxNexts a')
+          let elmentReel = document.querySelector('.reelBoxAnimation')
+          boolAnimation.current.value = "false"
 
-               // animacion del ver
-               elementCursor = document.querySelector(`#next-${id} .viewCursor`)
+          await elemsA.forEach((element) => {
+               element.classList.add('isOpacity')
+               element.style.zIndex = 2
+          })
+          elem.style.zIndex = 10
+          elmentReel.style.zIndex = 3
+      
+          await reelDinamic(texto)
 
-               gsap.set(elementCursor, { opacity: 0, scale: 0 })
-               gsap.to(elementCursor, { opacity: 1, scale: 1, duration: .5 })
-
-          }
-
+          gsap.set(elementCursor, { opacity: 0, scale: 0 })
+          gsap.to(elementCursor, { opacity: 1, scale: 1, duration: .5 })
 
      })
 
      const handleMouseMove = ( (id, e) => {
-          element = document.querySelector(`#next-${id}`)
-          elementCursor = document.querySelector(`#next-${id} .viewCursor`)
-          mouseX = (e.clientX - element.getBoundingClientRect().x) - 40
-          mouseY = (e.clientY - element.getBoundingClientRect().y) - 40
-
-          // console.log('x',element.getBoundingClientRect().x)
-          // console.log('y',element.offsetTop)
-          // console.log('bloqueX',element.getBoundingClientRect().x)
-          // console.log('bloqueY',element.getBoundingClientRect().y)
-          // console.log('clientX',e.clientX)
-          // console.log('clientY',e.clientY)
-
+          const element = document.querySelector(`#next-${id}`)
+          const elementCursor = document.querySelector(`#next-${id} .viewCursor`)
+          let mouseX = (e.clientX - element.getBoundingClientRect().x) - 40
+          let mouseY = (e.clientY - element.getBoundingClientRect().y) - 40
           gsap.to(elementCursor, { x: mouseX, y: mouseY })
-          // console.log(id)
      })
 
      
-     const handleMouseLeave = ( (id,e) => {
+     const handleMouseLeave = ( async (id,e) => {
+          
+          await deletedElementReel()
+        
+          const elementCursor = document.querySelector(`#next-${id} .viewCursor`)
+          const elem = e.target
+          let elmentReel = document.querySelector('.reelBoxAnimation')
+          let elemsA =  document.querySelectorAll('.boxNexts a')
 
-          if (boolAnimation){
-               boolAnimation = false
-               const elem = e.target
-               let elmentReel = document.querySelector('.reelBoxAnimation')
-               // console.log(animationReel)
-               elem.style.zIndex = 2
-               elmentReel.style.zIndex = 0
-               deletedElementReel()
-               let elemsA =  document.querySelectorAll('.boxNexts a')
-               elemsA.forEach((element) => {
-                    element.classList.remove('isOpacity')
-               })
-               elementCursor = document.querySelector(`#next-${id} .viewCursor`)
-               gsap.to(elementCursor, { opacity: 0, scale: 0, duration: .5 })
-          }
+          elem.style.zIndex = 2
+          elmentReel.style.zIndex = 0
+          deletedElementReel()
+          elemsA.forEach((element) => {
+               element.classList.remove('isOpacity')
+          })
+          gsap.to(elementCursor, { opacity: 0, scale: 0, duration: .5 })
+          
      })
+
+     useEffect( () => {
+          deletedElementReel()
+     }, [deletedElementReel])
+
+    
 
      return (
           <div className={styles.nextContainer} id="nextContainer">
+               <input type="hidden" ref={boolAnimation} value="true" />
                <div className="container">
                     <div className={styles.titleContainer}>
                          <h2>

@@ -1,8 +1,8 @@
 import Layout from '../components/layout'
 import Banner from '../components/home/banner'
 import Reel from '../components/home/reel'
-// import MediaCreativity from '../components/home/media-creativity'
-// import NextSteps from '../components/home/next-steps'
+import MediaCreativity from '../components/home/media-creativity'
+import NextSteps from '../components/home/next-steps'
 // import OpenBold from '../components/home/open-bold'
 
 export default function Home() {
@@ -14,9 +14,9 @@ export default function Home() {
                >
                     <Banner />
                     <Reel />
-                    {/* <MediaCreativity />
+                    <MediaCreativity />
                     <NextSteps />
-                    <OpenBold /> */}
+                    {/* <OpenBold /> */}
                </Layout>
           </>
      )

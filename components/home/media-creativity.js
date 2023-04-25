@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from  '../../styles/sass/home.module.sass'
@@ -9,43 +9,40 @@ import { gsap } from "gsap"
 export default function MediaCreativity() {
      // const viewCursor = useRef()
 
-     let  element,
-          elementLabel,
-          elementCursor
-     
-     let  mouseX = 0,
-          mouseY = 0,
-          posElementY = 0
+     const [posElementY, setPosElementY] = useState(0)
+     const [cursorScroll, setCursorScroll] = useState(null)
 
-     const handleMouseEnter = ( (id, e) => {
-          element = document.querySelector(`#card-${id}.linkMouse`)
-          elementLabel = document.querySelector(`#card-${id} .labelAnimated`)
-          elementCursor = document.querySelector(`#card-${id} .viewCursor`)
-
-          gsap.set(elementCursor, { opacity: 0, scale: 0 })
-          gsap.to(elementCursor, { opacity: 1, scale: 1, duration: .5 })
-          gsap.to(elementLabel, {opacity: 1})
+     const handleMouseEnter = ( async (id, e) => {
+          const elementLabel = document.querySelector(`#card-${id} .labelAnimated`)
+          const elementCursor = document.querySelector(`#card-${id} .viewCursor`)
+          setCursorScroll(elementCursor)
+          gsap.set(elementLabel, { opacity: 0, scale: 0 })
+          gsap.to(elementLabel, { opacity: 1, scale: 1, duration: .5 })
+          gsap.to(elementCursor, {opacity: 1})
      })
 
-     const handleMouseMove = ( (id, e) => {
-          element = document.querySelector(`#card-${id}`)
-          elementCursor = document.querySelector(`#card-${id} .viewCursor`)
-          mouseX = (e.clientX - element.getBoundingClientRect().x) - 40
-          mouseY = (e.clientY - element.getBoundingClientRect().y) - 40
-          posElementY = element.offsetTop
-          console.log('x',element.getBoundingClientRect().x)
-          console.log('y',element.offsetTop)
-          console.log('mx',mouseY)
-          console.log('my',e.pageY)
+     const handleMouseMove = ( async (id, e) => {
+          const element = document.querySelector(`#card-${id}`)
+          const elementCursor = document.querySelector(`#card-${id} .viewCursor`)
+          let mouseX =  (e.clientX - element.getBoundingClientRect().x) - 40
+          let mouseY =  (e.clientY - element.getBoundingClientRect().y) - 40
+          setPosElementY(element.offsetTop)
+          setCursorScroll(elementCursor)
+          // console.log('x',element.getBoundingClientRect().x)
+          // console.log('y',element.offsetTop)
+          // console.log('mx',mouseY)
+          // console.log('my',e.pageY)
           gsap.to(elementCursor, { x: mouseX, y: mouseY })
           // console.log(id)
      })
 
-     const handleMouseLeave = ( (id,e) => {
-          elementLabel = document.querySelector(`#card-${id} .labelAnimated`)
-          elementCursor = document.querySelector(`#card-${id} .viewCursor`)
+     const handleMouseLeave = ( async (id,e) => {
+          const elementCursor = document.querySelector(`#card-${id} .labelAnimated`)
+          const elementLabel = document.querySelector(`#card-${id} .viewCursor`)
           gsap.to(elementCursor, { opacity: 0, scale: 0, duration: .5 })
           gsap.to(elementLabel, {opacity: 0})
+          setCursorScroll(null)
+
      })
      
 
@@ -53,8 +50,9 @@ export default function MediaCreativity() {
           window.onscroll = function() {
                let scrollY = window.scrollY + 350
                let moveScrollY = scrollY - posElementY
-               if (elementCursor != undefined)
-                    gsap.to(elementCursor, { y: moveScrollY })
+               // console.log(cursorScroll)
+               if (cursorScroll != null)
+                    gsap.to(cursorScroll, { y: moveScrollY })
           }
      })
 
