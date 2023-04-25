@@ -1,0 +1,93 @@
+@import 'vars/colors'
+@import 'abstracts/mixins'
+@import 'vars/fonts'
+
+
+.btn-rounded
+     color: white
+     text-decoration: none
+     padding: .65rem 1.5rem
+     border-radius: 30px
+     border: 1px solid white
+     text-transform: uppercase
+     font-size: .6rem
+     display: inline-block
+
+.btn-bg-black
+     @include bg-container(transparent,white)
+     &:hover
+          color: $negroClaro
+button
+     all: unset
+.btn-circle
+     width: 2rem
+     height: 2rem 
+     border-radius: 50%
+     // background: white
+     @include bg-container(white,black)
+
+.fullHeight
+     height: 100% !important
+.boxNexts
+     a
+          &:hover
+               &::after
+                    animation: none !important
+          &.isOpacity
+               &::after
+                    animation-name: animatedOpacity
+                    animation-duration: .5s
+                    animation-iteration: linear
+                    animmation-timing-function: ease-in-out
+                    animation-fill-mode: forwards
+
+
+
+//local fonts
+
+@font-face
+     font-family: 'Montserrat'
+     src: url('../../public/fonts/montserrat/Montserrat-SemiBold.eot')
+     src: url('../../public/fonts/montserrat/Montserrat-SemiBold.eot?#iefix') format("embedded-opentype"), url('../../public/fonts/montserrat/Montserrat-SemiBold.woff2') format("woff2"), url('../../public/fonts/montserrat/Montserrat-SemiBold.woff') format("woff"), url('../../public/fonts/montserrat/Montserrat-SemiBold.ttf') format("truetype"), url('../../public/fonts/montserrat/Montserrat-SemiBold.svg#Montserrat-SemiBold') format("svg")
+     // font-weight: 600
+     font-style: normal
+     font-display: swap
+
+@font-face
+     font-family: 'Avenir Medium'
+     src: url('../../public/fonts/avenir/AvenirLTStd-Medium.woff') format("woff")
+     src: url('../../public/fonts/avenir/AvenirLTStd-Medium.woff2') format("woff2")
+     font-weight: theme('fontWeight.medium')
+     font-style: normal
+     font-display: swap
+@font-face
+     font-family: 'Avenir Book'
+     src: url('../../public/fonts/avenir/AvenirLTStd-Book.woff') format("woff")
+     src: url('../../public/fonts/avenir/AvenirLTStd-Book.woff2') format("woff2")
+     font-weight: theme('fontWeight.book')
+     font-style: normal
+     font-display: swap
+
+@font-face
+     font-family: 'Avenir Roman'
+     src: url('../../public/fonts/avenir/AvenirLTStd-Roman.woff') format("woff")
+     src: url('../../public/fonts/avenir/AvenirLTStd-Roman.woff2') format("woff2")
+     font-weight: theme('fontWeight.roman')
+     font-style: normal
+     font-display: swap
+
+@font-face 
+     font-family: "Avenir Heavy"
+     src: url('../../public/fonts/avenir/AvenirLTStd-Heavy.woff2') format('woff2')
+     src: url('../../public/fonts/avenir/AvenirLTStd-Heavy.woff') format('woff')
+     font-weight: theme('fontWeight.heavy')
+     font-style: normal
+     font-display: swap
+
+@font-face 
+     font-family: "Avenir Oblique"
+     src: url('../../public/fonts/avenir/AvenirLTStd-BlackOblique.woff2') format('woff2')
+     src: url('../../public/fonts/avenir/AvenirLTStd-BlackOblique.woff') format('woff')
+     font-weight: theme('fontWeight.black')
+     font-style: italic
+     font-display: swap

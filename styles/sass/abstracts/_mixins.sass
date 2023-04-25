@@ -1,0 +1,15 @@
+@keyframes animatedOpacity
+     0%
+          background-color: rgba(black, 0)
+     100%
+          background-color: rgba(black, .5)
+     
+     
+@mixin bg-container($bg,$bghover)
+     background: $bg
+     transition: all 0.5s ease
+     &:hover
+          background: $bghover
+          // transition: all 0.5s ease
+     &:active
+          background:darken($bg,25%)

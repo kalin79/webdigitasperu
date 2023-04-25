@@ -1,0 +1,77 @@
+@import 'vars/colors'
+@import 'abstracts/mixins'
+@import 'vars/fonts'
+
+.headerMain
+     display: grid
+     grid-template-columns: 6fr 2fr
+     border: 0px solid red
+     padding: 2rem 3rem
+     // background: red
+     position: absolute
+     top: 0
+     width: 100%
+     z-index: 100
+     .imgLink
+          filter: invert(100)
+     .itemLogo
+          width: 91px
+          height: 13px
+     .headerLeft
+          display: flex
+          justify-content: flex-start
+          align-items: flex-end
+          border: 0px solid black
+          nav
+               margin-left: 2rem
+               display: flex
+               justify-content: flex-start 
+               align-items: center
+               gap: 2rem
+               border: 0px solid blue
+               a
+                    text-decoration: none
+                    position: relative
+                    font-family: $avenirMedium
+                    font-size: .75rem
+                    color: white
+                    text-transform: uppercase
+                    position: relative
+                    opacity: 1
+                    transition: .3s ease-in opacity
+                    &:hover
+                         opacity: .35
+                         &::after
+                            width: 100%
+                    &.active
+                         &::after
+                            width: 100%  
+                    &::after
+                         content: ''
+                         position: absolute
+                         bottom: 0
+                         left: 0
+                         width: 0
+                         height: 1px
+                         background: white
+                         transition: .3s ease-in all
+
+     .headerRight
+          position: relative
+          top: .35rem
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          gap: .5rem
+          .itemSearch
+               display: flex
+               justify-content: center
+               align-items: center
+               img
+                    width: 1rem
+                    height: 1rem
+               &:hover
+                    img
+                         filter: invert(100)
+
+          
