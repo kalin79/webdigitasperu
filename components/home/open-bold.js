@@ -10,16 +10,16 @@ import { gsap } from "gsap"
 
 export default function OpenBold() {
      
-     const [boolAnimation, setAnimation] = useState(true)
+     const [boolAnimation, setBoolAnimation] = useState(true)
+     const [elementCursor, setElementCursor] = useState(null)
+     const [elementContenedorCursor, setElementContenedorCursor] = useState(null)
+     const [mouseX, setMouseX] = useState(0)
+     const [mouseY, setMouseY] = useState(0)
 
 
      let pageActive = 1
      let totalPage = 0
-     let  elementCursor,
-          elementContenedorCursor,
-          progress
-     let  mouseX = 0,
-          mouseY = 0
+     let  progress
 
 
      const ActualizarGalleria = (()=> {
@@ -97,41 +97,40 @@ export default function OpenBold() {
      })
 
      const  handleMouseEnter = ( async (e) => {
-          elementContenedorCursor = document.querySelector('#homeOpenBold .galleryMouse')
-          elementContenedorCursor = document.querySelector('#homeOpenBold .galleryMouse')
-          mouseX = Math.round(elementContenedorCursor.clientWidth / 2)
-          mouseY = 60
+          setElementContenedorCursor(document.querySelector('#homeOpenBold .galleryMouse'))
+          setMouseX(Math.round(elementContenedorCursor.clientWidth / 2))
+          setMouseY(60)
           gsap.to(elementCursor, { x: mouseX, y: mouseY })
      })
 
      const handleMouseMove = ( (e) => {
-          elementContenedorCursor = document.querySelector('#homeOpenBold .galleryMouse') 
-          elementCursor =document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress')
+          setElementContenedorCursor(document.querySelector('#homeOpenBold .galleryMouse'))
+          setElementCursor(document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress'))
 
-          mouseX = (e.clientX - elementContenedorCursor.getBoundingClientRect().x) - 40
-          mouseY = (e.clientY - elementContenedorCursor.getBoundingClientRect().y) - 40
+          setMouseX((e.clientX - elementContenedorCursor.getBoundingClientRect().x) - 40)
+          setMouseY((e.clientY - elementContenedorCursor.getBoundingClientRect().y) - 40)
           gsap.to(elementCursor, { x: mouseX, y: mouseY })
      
      })
 
      
      const handleMouseLeave = ( (id,e) => {
-          elementCursor =document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress')
-          elementContenedorCursor = document.querySelector('#homeOpenBold .galleryMouse')
-          mouseX = Math.round(elementContenedorCursor.clientWidth / 2)
-          mouseY = 60
+          setElementCursor(document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress'))
+          setElementContenedorCursor(document.querySelector('#homeOpenBold .galleryMouse'))
+          setMouseX(Math.round(elementContenedorCursor.clientWidth / 2))
+          setMouseY(60)
           gsap.to(elementCursor, { x: mouseX, y: mouseY })
           
      })
 
      useEffect( () => {
           if (boolAnimation){
-               setAnimation(false)
+               setBoolAnimation(false) 
                initGallery()
-               elementCursor =document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress')
-               elementContenedorCursor = document.querySelector('#homeOpenBold .galleryMouse')
-               mouseX = Math.round(elementContenedorCursor.clientWidth / 2)
-               mouseY = 60
+               setElementCursor(document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress'))
+               setElementContenedorCursor(document.querySelector('#homeOpenBold .galleryMouse'))
+               setMouseX(Math.round(elementContenedorCursor.clientWidth / 2))
+               setMouseY(60)
                gsap.to(elementCursor, { x: mouseX, y: mouseY })
           }
      },[])
