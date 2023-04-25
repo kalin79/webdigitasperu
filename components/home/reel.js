@@ -6,9 +6,7 @@ import { gsap } from "gsap"
 export default function Reel() {
      const newsRef = useRef()
      useEffect( () => {
-          // console.log(newsRef.current)
           const elements = newsRef.current.querySelectorAll(":scope > div")
-          // console.log(elements)
           let _stagger = 8
           let animation = gsap.timeline({
                repeat: -1
