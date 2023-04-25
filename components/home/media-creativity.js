@@ -60,7 +60,7 @@ export default function MediaCreativity() {
 
      useEffect( () => {
           detectMoveScroll()
-     }, [])
+     }, [detectMoveScroll])
 
      return (
           <div className={styles.creativeContainer}>

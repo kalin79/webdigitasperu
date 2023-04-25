@@ -8,11 +8,13 @@ import styles from  '../../styles/sass/home.module.sass'
 import { gsap } from "gsap"
 
 
-export default function openBold() {
+export default function OpenBold() {
      
+     const [boolAnimation, setAnimation] = useState(true)
+
+
      let pageActive = 1
      let totalPage = 0
-     let boolAnimation = true
      let  elementCursor,
           elementContenedorCursor,
           progress
@@ -124,7 +126,7 @@ export default function openBold() {
 
      useEffect( () => {
           if (boolAnimation){
-               boolAnimation = false
+               setAnimation(false)
                initGallery()
                elementCursor =document.querySelector('#homeOpenBold .galleryMouse .circularBoxProgress')
                elementContenedorCursor = document.querySelector('#homeOpenBold .galleryMouse')
