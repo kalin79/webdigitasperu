@@ -9,16 +9,21 @@ import { gsap } from "gsap"
 
 export default function NextSteps() {
 
-     const [gsapReel, setGsapReel] = useState(null)
+     const next1 = useRef(null)
+     const next2 = useRef(null)
+     const next3 = useRef(null)
+     const boxNexts = useRef(null)
+     const reelBoxAnimation = useRef(null)
+     const gsapReel = useRef(null)
+
      const [hover, setHover] = useState(false)
-     const boolAnimation = useRef()     
+     const boolAnimation = useRef(true)     
 
 
      const reelDinamic = async (texto) => {
-         
-          document.querySelector('.reelBoxAnimation .reelAnimation').innerHTML = ''
+          (reelBoxAnimation.current.children[0]).innerHTML = ''
           let node, node2,textnode
-          const reel = document.querySelector('.reelBoxAnimation .reelAnimation')
+          const reel = reelBoxAnimation.current.children[0]
           const pageWidth  = document.documentElement.scrollWidth
           let w_element = 0
           let total_div = 0
@@ -31,15 +36,13 @@ export default function NextSteps() {
           reel.appendChild(node)
 
           setTimeout(function(){
-               
-               if (document.querySelector('.reelBoxAnimation .reelAnimation div') === null)
+               if (reel.children.length === 0)
                     w_element = 350
                else{
-                    w_element = document.querySelector('.reelBoxAnimation .reelAnimation div').clientWidth
+                    w_element = reel.children[0].clientWidth
                }
-               const items = Math.round(pageWidth / w_element)  + 2             
+               let items = Math.round(pageWidth / w_element)  + 2             
                total_div = w_element * items 
-               
                for ( let i=1; i <= (items - 1); i++){
                     node = document.createElement("div")
                     node2 = document.createElement("h4")
@@ -49,15 +52,15 @@ export default function NextSteps() {
                     reel.appendChild(node)
                }
 
-               _gsapReel.set('.reelBoxAnimation .reelAnimation', {x: (total_div - w_element) })
+               _gsapReel.set(reel, {x: (total_div - w_element) })
 
 
           }, 10)
 
           setTimeout(function(){
-               _gsapReel.set('.reelBoxAnimation .reelAnimation div', {x: (i) => i * -w_element})
-               _gsapReel.set('.reelBoxAnimation', {opacity: 1})
-               _gsapReel.to('.reelBoxAnimation .reelAnimation div', {
+               _gsapReel.set(reel.children, {x: (i) => i * -w_element})
+               _gsapReel.set(reelBoxAnimation.current, {opacity: 1})
+               _gsapReel.to(reel.children, {
                     duration: 10,
                     ease: 'none',
                     x: `-=${total_div}`,
@@ -68,39 +71,32 @@ export default function NextSteps() {
                })
           }, 15)
 
-          setGsapReel(_gsapReel)
+          gsapReel.current = _gsapReel
           
      }
 
      const deletedElementReel = () => {
 
-          document.querySelector('.reelBoxAnimation .reelAnimation').innerHTML = ''
-          
-          if (gsapReel != null){
-               gsapReel.killTweensOf('.reelBoxAnimation .reelAnimation')
-               gsapReel.killTweensOf('.reelBoxAnimation .reelAnimation div')
-              
-               gsapReel.set('.reelBoxAnimation', {opacity: 0})
-          }else{
-               console.log('no existe')
+          (reelBoxAnimation.current.children[0]).innerHTML = ''
+          if (gsapReel.current != null){
+               gsapReel.current.killTweensOf(reelBoxAnimation.current.children[0])
+               gsapReel.current.set(reelBoxAnimation.current, {opacity: 0})
           }
      }
 
-     const  handleMouseEnter = ( async (texto,id,e) => {
-          // console.log(hover)
+     const  handleMouseEnter = ( async (texto,id,e,activeRef) => {
           await deletedElementReel()
-         
-          const elementCursor = document.querySelector(`#next-${id} .viewCursor`)
-       
-          const elem = e.target
-          let elemsA =  document.querySelectorAll('.boxNexts a')
-          let elmentReel = document.querySelector('.reelBoxAnimation')
-          boolAnimation.current.value = "false"
-
+          const elementCursor = activeRef.current.childNodes[0]
+          const elem = activeRef.current
+          let elemsA =  boxNexts.current.childNodes
+          let elmentReel =reelBoxAnimation.current
+          boolAnimation.current = false
+          
           await elemsA.forEach((element) => {
                element.classList.add('isOpacity')
                element.style.zIndex = 2
           })
+
           elem.style.zIndex = 10
           elmentReel.style.zIndex = 3
       
@@ -111,24 +107,23 @@ export default function NextSteps() {
 
      })
 
-     const handleMouseMove = ( (id, e) => {
-          const element = document.querySelector(`#next-${id}`)
-          const elementCursor = document.querySelector(`#next-${id} .viewCursor`)
+     const handleMouseMove = ( (id, e,activeRef) => {
+          const element = activeRef.current
+          const elementCursor = activeRef.current.children[0]
           let mouseX = (e.clientX - element.getBoundingClientRect().x) - 40
           let mouseY = (e.clientY - element.getBoundingClientRect().y) - 40
           gsap.to(elementCursor, { x: mouseX, y: mouseY })
      })
 
      
-     const handleMouseLeave = ( async (id,e) => {
+     const handleMouseLeave = ( async (id,e,activeRef) => {
           
           await deletedElementReel()
         
-          const elementCursor = document.querySelector(`#next-${id} .viewCursor`)
+          const elementCursor = activeRef.current.children[0]
           const elem = e.target
-          let elmentReel = document.querySelector('.reelBoxAnimation')
-          let elemsA =  document.querySelectorAll('.boxNexts a')
-
+          let elmentReel = reelBoxAnimation.current
+          let elemsA =  boxNexts.current.childNodes
           elem.style.zIndex = 2
           elmentReel.style.zIndex = 0
           deletedElementReel()
@@ -141,13 +136,12 @@ export default function NextSteps() {
 
      useEffect( () => {
           deletedElementReel()
-     }, [deletedElementReel])
+     }, [])
 
     
 
      return (
           <div className={styles.nextContainer} id="nextContainer">
-               <input type="hidden" ref={boolAnimation} value="true" />
                <div className="container">
                     <div className={styles.titleContainer}>
                          <h2>
@@ -157,7 +151,10 @@ export default function NextSteps() {
                     </div>
 
                     
-                    <div className={`reelBoxAnimation ${styles.reelContainer}`}>
+                    <div 
+                         className={`reelBoxAnimation ${styles.reelContainer}`}
+                         ref={reelBoxAnimation}
+                    >
                          <div className={`reelAnimation ${styles.reelElement}`}>
                               {/* Contenido Dinamico */}
                          </div>
@@ -165,14 +162,15 @@ export default function NextSteps() {
 
                     <div 
                          className={`boxNexts ${styles.cardsContainer}`}
-                         
+                         ref={boxNexts}
                     > 
                          <Link href="/" 
                               className={`linkMouse ${styles.cardItem}`}
-                              onMouseEnter={ (e) => handleMouseEnter('Insights', 1, e) }
-                              onMouseLeave={ (e) => handleMouseLeave(1,e)}
-                              onMouseMove={ (e) =>  handleMouseMove(1, e) }
+                              onMouseEnter={ (e) => handleMouseEnter('Insights', 1, e,next1) }
+                              onMouseLeave={ (e) => handleMouseLeave(1,e,next1)}
+                              onMouseMove={ (e) =>  handleMouseMove(1, e,next1) }
                               id="next-1"
+                              ref={next1}
                          >
                               <div 
                                    className={`viewCursor ${styles.viewPointer} ${styles.bgOrange}`}
@@ -192,10 +190,11 @@ export default function NextSteps() {
                          </Link>
                          <Link href="/" 
                               className={`linkMouse ${styles.cardItem}`}
-                              onMouseEnter={ (e) => handleMouseEnter('News', 2, e) }
-                              onMouseLeave={ (e) => handleMouseLeave(2,e)}
-                              onMouseMove={ (e) =>  handleMouseMove(2, e) }
+                              onMouseEnter={ (e) => handleMouseEnter('News', 2, e,next2) }
+                              onMouseLeave={ (e) => handleMouseLeave(2,e,next2)}
+                              onMouseMove={ (e) =>  handleMouseMove(2, e,next2) }
                               id="next-2"
+                              ref={next2}
                              
                          >
                               <div 
@@ -215,10 +214,11 @@ export default function NextSteps() {
                          </Link>
                          <Link href="/" 
                               className={`linkMouse ${styles.cardItem}`}
-                              onMouseEnter={ (e) => handleMouseEnter('Careers', 3, e) }
-                              onMouseLeave={ (e) => handleMouseLeave(3,e)}
-                              onMouseMove={ (e) =>  handleMouseMove(3, e) }
+                              onMouseEnter={ (e) => handleMouseEnter('Careers', 3, e,next3) }
+                              onMouseLeave={ (e) => handleMouseLeave(3,e,next3)}
+                              onMouseMove={ (e) =>  handleMouseMove(3, e,next3) }
                               id="next-3"
+                              ref={next3}
                          >
                               <div 
                                    className={`viewCursor ${styles.viewPointer} ${styles.bgMorado}`}

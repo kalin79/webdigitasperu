@@ -3,7 +3,7 @@ import Banner from '../components/home/banner'
 import Reel from '../components/home/reel'
 import MediaCreativity from '../components/home/media-creativity'
 import NextSteps from '../components/home/next-steps'
-// import OpenBold from '../components/home/open-bold'
+import OpenBold from '../components/home/open-bold'
 
 export default function Home() {
      return (
