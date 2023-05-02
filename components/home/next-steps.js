@@ -15,8 +15,6 @@ export default function NextSteps() {
      const boxNexts = useRef(null)
      const reelBoxAnimation = useRef(null)
      const gsapReel = useRef(null)
-
-     const [hover, setHover] = useState(false)
      const boolAnimation = useRef(true)     
 
 

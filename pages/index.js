@@ -16,7 +16,7 @@ export default function Home() {
                     <Reel />
                     <MediaCreativity />
                     <NextSteps />
-                    {/* <OpenBold /> */}
+                    <OpenBold />
                </Layout>
           </>
      )
