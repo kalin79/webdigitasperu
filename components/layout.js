@@ -8,10 +8,10 @@ export default function Layout({children,title='',description=''}) {
                     <title>{title}</title>
                     <meta name="title" content={title} />
                     <meta name="description" content={description} />
-                    <meta
+                    {/* <meta
                          http-equiv="Content-Security-Policy"
                          content="default-src 'self'; img-src https://*; child-src 'none';" 
-                    />
+                    /> */}
                </Head>
                <Header />
                {children}
