@@ -11,7 +11,9 @@
      
      .footerMenu
           background: $negro
-          padding: 8rem 0 1rem
+          padding: 4rem 0 1rem
+          @media screen and (min-width: 992px)
+               padding: 8rem 0 1rem
           .copyBox
                display: grid
                grid-template-columns: repeat(12,1fr)
@@ -23,7 +25,7 @@
                     &:nth-of-type(2)
                          grid-column: 3 / span 2
                     &:nth-of-type(3)
-                         grid-column: 8 / span 5
+                         grid-column: 5 / -1
                p,
                a
                     font-family: $avenirRoman
@@ -56,11 +58,16 @@
                padding-bottom: 4rem
                > div
                     &:nth-of-type(1)
-                         grid-column: 1 / span 1
+                         grid-column: 1 / span 2
+                         @media screen and (min-width: 992px)
+                              grid-column: 1 / span 1
+
                          img
                               filter: invert(100%)
                     &:nth-of-type(2)
-                         grid-column: 2 / span 2
+                         grid-column: 3 / span 5
+                         @media screen and (min-width: 992px)
+                              grid-column: 2 / span 2
                          h2
                               font-size: 1rem
                               // letter-spacing: -.025em
@@ -73,6 +80,7 @@
                                    all: unset
                                    display: flex
                                    flex-direction: column
+                                   margin-bottom: .35rem
                                    a
                                         font-family: $avenirRoman
                                         font-size: .85rem
@@ -85,11 +93,15 @@
                                         &:hover
                                              color: rgba(white, .65)
                     &:nth-of-type(3)
-                         grid-column: 8 / span 5
+                         grid-column: 8 / -1 
                          display: flex
-                         flex-direction: row
-                         justify-content: flex-end
+                         flex-direction: column
+                         justify-content: flex-start
                          gap: 1rem
+                         @media screen and (min-width: 992px)
+                              grid-column: 8 / span 5
+                              flex-direction: row
+                              justify-content: flex-end
                          a
                               text-decoration: none
                               color: white
@@ -110,13 +122,17 @@
                z-index: 1
           .containerGrid
                display: grid
-               grid-template-columns: repeat(6,1fr)
+               grid-template-columns: repeat(10,1fr)
+               @media screen and (min-width: 992px)
+                    grid-template-columns: repeat(6,1fr)
                .formContainer
-                    grid-column: 2 / span 4
+                    grid-column: 2 / span 8
                     background: white
                     padding: 4rem 0 0rem
                     position: relative
                     z-index: 2
+                    @media screen and (min-width: 992px)
+                         grid-column: 2 / span 4
                     .formBox
                          display: grid
                          grid-template-columns: repeat(13,1fr)
@@ -128,18 +144,22 @@
                               padding-top: 2rem
                               > div
                                    &:nth-of-type(1)
-                                        display: flex
-                                        justify-content: flex-start
+                                        display: grid
+                                        grid-template-columns: repeat(10,1fr)
+                                        gap: 1rem
                                         align-items: center
-                                        gap: .5rem
                                         input[type="checkbox"]
                                              all: unset
                                              border: 1px solid #d800ba
-                                             width: 1.15rem
-                                             height: 1.15rem
+                                             width: 2rem
+                                             height: 2rem
                                              position: relative
                                              opacity: .5
                                              cursor: pointer
+                                             grid-column: 1 / span 2
+                                             @media screen and (min-width: 992px)
+                                                  grid-column: 1 / span 1
+                                             //      height: 1.15rem
                                              &:hover
                                                   opacity: 1
                                              &:checked
@@ -165,6 +185,10 @@
                                              color: $negro
                                              line-height: 1.5em
                                              text-align: left
+                                             grid-column: 3 / -1
+                                             @media screen and (min-width: 992px)
+                                                  grid-column: 2 / -1
+
                                    &:nth-of-type(2)
                                         margin-top: 1rem
                                         p
@@ -188,7 +212,10 @@
                               display: grid
                               align-items: center
                               label
-                                   grid-column: 1 / span 3
+                                   grid-column: 1 / -1
+                                   @media screen and (min-width: 992px)
+                                        grid-column: 1 / span 3
+
                                    span
                                         font-family: $avenirMedium
                                         font-size: 1.65rem
@@ -196,7 +223,7 @@
                                         line-height: 2.25em
                                         text-align: left
                               input[type="text"]
-                                   grid-column: 4 / span 5
+                                   grid-column: 1 / -1
                                    height: 40px
                                    border: 0
                                    background: transparent
@@ -206,6 +233,11 @@
                                    color: $negro
                                    line-height: 1em
                                    text-align: left
+                                   @media screen and (min-width: 992px)
+                                        grid-column: 4 / span 5
+                                        margin: 0 1rem
+                                   @media screen and (min-width: 1200px)
+                                        margin: 0rem
                                    &:focus,
                                    &:hover,
                                    &:focus-visible,
@@ -213,18 +245,24 @@
                                         box-shadow: none !important
                                         outline: none !important
                               .boxButton
-                                   grid-column: 9 / span 2
+                                   grid-column: 1 / -1
                                    display: flex
-                                   justify-content: flex-end
+                                   justify-content: center
+                                   margin-top: 2rem
+                                   @media screen and (min-width: 992px)
+                                        grid-column: 9 / span 2
+                                        margin-top: 0rem
                                    button
                                         all: unset
                                         border: 1px solid $negro
-                                        width: 100px
+                                        width: 120px
                                         height: 50px
                                         border-radius: 50px
                                         position: relative
                                         overflow: hidden
                                         cursor: pointer
+                                        @media screen and (min-width: 992px)
+                                              width: 100px
                                         &:before
                                              content: ''
                                              position: absolute
@@ -275,11 +313,13 @@
                                         
                     h3
                          font-family: $avenirBook
-                         font-size: 3rem
+                         font-size: 1.85rem
                          color: rgba(#1d1d1d,1)
                          margin: 0
                          line-height: 1em
                          text-align: center
+                         @media screen and (min-width: 992px)
+                              font-size: 3rem
                     .sedesContainer
                          display: grid
                          // grid-template-columns: .5fr 3fr 1px 3fr .5fr
@@ -289,10 +329,13 @@
                          padding-bottom: 3rem
                          > div
                               &:nth-of-type(1)
-                                   grid-column: 2 / span 5
+                                   grid-column: 1 / -1
+                                   @media screen and (min-width: 992px)
+                                        grid-column: 2 / span 5
                               &:nth-of-type(2)
-                                   grid-column: 7 / span 1
-                                   position: relative
+                                   display: none
+                                   @media screen and (min-width: 992px)
+                                        grid-column: 7 / span 1
                                    &:before
                                         content: ''
                                         position: absolute
@@ -303,7 +346,9 @@
                                         height: 100%
                                         background: rgba(#000,.15)
                               &:nth-of-type(3)
-                                   grid-column: 8 / span 5
+                                   grid-column: 1 / -1
+                                   @media screen and (min-width: 992px)
+                                        grid-column: 8 / span 5
                          h4
                               font-family: $avenirOblique
                               font-size: .75rem

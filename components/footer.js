@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import styles from  '../styles/sass/footer.module.sass'
 
-import { Raleway } from '@next/font/google'
+import { Raleway } from 'next/font/google'
 
 const raleway = Raleway({
   weight: ['300'],

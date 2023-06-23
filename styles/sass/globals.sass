@@ -3,6 +3,14 @@
 @import 'vars/fonts'
 
 
+.containerGrid
+     display: grid
+     grid-template-columns: 8fr
+     border: 0px solid red
+     padding: 2rem 1.5rem
+     @media screen and (min-width: 1200px) 
+          padding: 2rem 3rem
+
 .btn-rounded
      color: white
      text-decoration: none
@@ -19,12 +27,8 @@
           color: $negroClaro
 button
      all: unset
-.btn-circle
-     width: 2rem
-     height: 2rem 
-     border-radius: 50%
-     // background: white
-     @include bg-container(white,black)
+
+     
 
 .fullHeight
      height: 100% !important

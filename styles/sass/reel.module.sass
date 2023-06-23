@@ -1,0 +1,50 @@
+@import 'vars/colors'
+@import 'abstracts/mixins'
+@import 'vars/fonts'
+
+
+.reelMainContainer
+     position: relative
+     border: 0px solid red
+     height: 60px
+     overflow: hidden
+     background: #000
+     width: 100%
+     // left: 20rem
+     .reelItems
+          border: 0px solid blue
+          position: relative
+          height: 100%
+          width: 250%
+          > div
+               display: inline-block
+               position: absolute
+               top: 50%
+               transform: translateY(-50%)
+               padding: 0 .5rem 
+               color: white
+               // width: 50px
+               border: 0px solid yellow
+               // width: 200%
+               p
+                    margin: 0
+                    line-height: 1.5em
+                    font-family: $avenirMedium
+                    font-size: 1rem
+                    letter-spacing: -.05em
+                    color: white
+                    text-transform: uppercase
+                    @media screen and (min-width: 1200px)
+                         font-size: 1.5rem
+
+               h3
+                    margin: 0
+                    line-height: 1.5em
+                    font-family: $avenirOblique
+                    font-size: .65rem
+                    letter-spacing: -.05em
+                    color: white
+                    text-transform: uppercase
+                    // background: red
+                    @media screen and (min-width: 1200px)
+                         font-size: .75rem

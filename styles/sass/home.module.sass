@@ -8,9 +8,9 @@
 
 .homeOpenBold
      border: 0px solid red
-     padding-bottom: 10rem
-     @media screen and (min-width: 1200px)
-          padding-bottom: 14rem
+     padding-bottom: 5rem
+     @media screen and (min-width: 992px)
+          padding-bottom: 10rem
      .galleryMouse
           position: relative
           margin-top: 2rem
@@ -18,11 +18,15 @@
                width: 75px
                height: 75px
                position: absolute
-               
                background: conic-gradient(white 3.6deg,$fucsia 0deg )
                border-radius: 50%
                z-index: 100
                cursor: pointer
+               bottom: 6rem
+               left: 4rem
+               @media screen and (min-width: 992px)
+                    bottom: auto
+                    left: auto
                .circularProgress
                     position: relative
                     width: 75px
@@ -45,66 +49,69 @@
                               filter: invert(1)
      .gallery
           display: grid
-          grid-template-columns: repeat(10,minmax(0,1fr))
+          grid-template-columns: repeat(2,minmax(0,1fr))
           grid-template-rows: repeat(1, minmax(0,1fr))
           gap: 1rem
           position: relative
+          @media screen and (min-width: 992px)
+               grid-template-columns: repeat(10,minmax(0,1fr))
+               grid-template-rows: repeat(1, minmax(0,1fr))
           .item
                align-self:  flex-start
                grid-row-start: 1
                position: relative
                border: 0px solid red
                opacity: 0
-               @media screen and (min-width: 1200px)
+               @media screen and (min-width: 992px)
                     align-self:  flex-start
                     grid-row-start: 1 !important
                &:nth-of-type(5n+1)
                     aspect-ratio: 104/152
-                    grid-column-start: 1
-                    grid-row-start: 1
+                    grid-column: 1 / span 1
                     z-index: 10
-                    @media screen and (min-width: 1200px)
+                    @media screen and (min-width: 992px)
                          aspect-ratio: 200/120
                          grid-column: span 3 / span 3
                          grid-column-start: 1
                          margin-top: 4rem
                &:nth-of-type(5n+2)
-                    aspect-ratio: 100/200
-                    grid-column-start: 1
-                    grid-row-start: 2
+                    aspect-ratio: 140/150
+                    grid-column: 2 / span 1
                     z-index: 3
-                    @media screen and (min-width: 1200px)
+                    margin-top: 3rem
+                    @media screen and (min-width: 992px)
+                         margin-top: 0rem
                          aspect-ratio: 170/200
                          align-self:  flex-end
                          grid-column: span 2 / span 2
                          grid-column-start: 3
                          
                &:nth-of-type(5n+3)
-                    aspect-ratio: 192/152
-                    align-self:  flex-end
-                    grid-column-start: 2
-                    grid-row: span 2 /span 2
-                    grid-row-start: 1
+                    aspect-ratio: 142/230
+                    grid-column: 1/ span 1
+                    grid-row-start: 2
                     z-index: 2
-                    @media screen and (min-width: 1200px)
+                    @media screen and (min-width: 992px)
+                         align-self:  flex-end
                          aspect-ratio: 250/300
                          grid-column: span 3 / span 3
                          grid-column-start: 4
                          margin-bottom: 5.5rem
                &:nth-of-type(5n+4)
                     aspect-ratio: 192/152
-                    grid-column-start: 1
+                    grid-column: 1/ span 1
                     grid-row-start: 3
-                    @media screen and (min-width: 1200px)
+                    @media screen and (min-width: 992px)
                          aspect-ratio: 200/300
                          align-self:  flex-end
                          grid-column: span 2 / span 2
                          grid-column-start: 7
                &:nth-of-type(5n+5)
-                    aspect-ratio: 104/152
-                    grid-column-start: 2
-                    grid-row-start: 3
-                    @media screen and (min-width: 1200px)
+                    aspect-ratio: 104/122
+                    grid-column: 2/ span 1
+                    grid-row-start: 2
+                    margin-top: 3rem
+                    @media screen and (min-width: 992px)
                          aspect-ratio: 200/160
                          grid-column: span 2 / span 2
                          grid-column-start: 9
@@ -122,7 +129,10 @@
                          height: 100%
                          object-fit: cover
      .titleMain
-          margin-top: 15rem
+          margin-top: 10rem
+          @media screen and (min-width: 992px)
+               margin-top: 12rem
+
           h2
                font-family: $avenirBook
                font-size: 5.5rem
@@ -130,6 +140,8 @@
                margin: 0
                line-height: 1.05em
                text-align: center
+               @media screen and (min-width: 992px)
+                    line-height: 1.05em
                span
                     background: linear-gradient(90deg,$rojo, $fucsia)
                     background-clip: text
@@ -138,19 +150,25 @@
                     -webkit-background-clip: text 
           h3
                font-family: $avenirMedium
-               font-size: 1.07rem
+               font-size: 1.25rem
                color: $negro
-               margin: 0
-               line-height: 4em
+               margin: 1rem 0 0
+               line-height: 1.5em
                text-align: center
+               @media screen and (min-width: 992px)
+                    line-height: 4em
+                    font-size: 1.5rem
+                    margin: 1rem 0 0
+
 .nextContainer
      background: $negro
-     padding: 16rem 0 8rem
+     padding: 8rem 0 5rem
      position: relative
      border: 0px solid red
      width: 100%
      overflow: hidden
-
+     @media screen and (min-width: 992px)
+          padding: 16rem 0 8rem
      .reelContainer
           position: absolute
           top: 60%
@@ -186,17 +204,21 @@
           margin-bottom: 6rem
           h2
                font-family: $avenirBook
-               font-size: 4.5rem
+               font-size: 3.5rem
                color: $blanco
                margin: 0
                line-height: 1em
-               text-align: left    
+               text-align: left   
+               @media screen and (min-width: 992px)
+                    font-size: 4.5rem
      .cardsContainer
           margin-top: 0rem
           width: 100%
           display: grid
-          grid-template-columns: 1fr 1fr 1fr
+          grid-template-columns: 1fr
           gap: 1rem
+          @media screen and (min-width: 992px)
+               grid-template-columns: 1fr 1fr 1fr
           .cardItem
                text-decoration: none
                transition: .5s ease-in-out background
@@ -204,6 +226,7 @@
                z-index: 2
                border: 0px solid red 
                overflow: hidden
+               
                .viewPointer
                     position: absolute
                     background: $amarrillo
@@ -244,19 +267,29 @@
                     .cardImg
                          img
                               scale: 1.15
+               &:nth-of-type(1)
+                    margin-top: 0rem
                &:nth-of-type(2)
-                    margin-top: 8rem
+                    margin-top: 2rem
+                    @media screen and (min-width: 992px)
+                         margin-top: 8rem
+               &:nth-of-type(3)
+                    margin-top: 2rem
+                    @media screen and (min-width: 992px)
+                         margin-top: 0rem
                .cardImg
                     width: 100%
-                    height: 360px
+                    // height: 360px
+                    aspect-ratio: 300/360
                     overflow: hidden
-                    @media screen and (min-width: 1200px)
-                         height: 450px
-                    @media screen and (min-width: 1400px)
-                         height: 500px
+                    @media screen and (min-width: 992px)
+                         // height: 450px
+                         aspect-ratio: 200/270
+                    
                     img
                          width: 100%
-                         height: 100%
+                         height: auto
+                         max-height: 100%
                          transition: .5s ease-in-out all
                .cardSumilla
                     padding: 1rem 0
@@ -280,8 +313,10 @@
 
 
 .creativeContainer
-     padding: 8rem 0 2rem
-     
+     padding: 5rem 0 2rem
+     @media screen and (min-width: 1200px)
+          padding: 8rem 0 2rem
+
      .listCard
           margin-top: 3rem
           display: grid
@@ -294,27 +329,45 @@
                display: block
                position: relative
                text-decoration: none
-               margin-top: -3rem
+               margin-top: 0rem
+               @media screen and (min-width: 992px)
+                    margin-top: -3rem
                &:nth-of-type(1)
                     grid-column: 1 / -1
                     margin-top: 0rem
-                    .boxImg
-                         height: 550px
+                    .cardMain
+                         .boxImg
+                              aspect-ratio: 200/138
+                              @media screen and (min-width: 992px)
+                                   aspect-ratio: 160/85
+                              @media screen and (min-width: 1200px)
+                                   aspect-ratio: 160/85
                     .bodyCard
                          display: grid
-                         grid-template-columns: repeat(10, 1fr)
+                         grid-template-columns: 1fr
                          gap: 1rem
+                         @media screen and (min-width: 992px)
+                              grid-template-columns: repeat(10, 1fr)
                          > div
                              grid-column: 1 / span 5
                &:nth-of-type(2)
-                    grid-column: 1 / span 5
-                    margin-top: 3rem
+                    grid-column: 1 / -1
+                    margin-top: 1.5rem
+                    @media screen and (min-width: 992px)
+                         grid-column: 1 / span 5
+                         margin-top: 3rem
                &:nth-of-type(3)
-                    grid-column: 6 / -1
-                    // margin-top: -3rem
+                    grid-column: 1 / -1
+                    margin-top: 1.5rem
+                    @media screen and (min-width: 992px)
+                         grid-column: 6 / -1
+                         margin-top: 0rem
                &:nth-of-type(4)
-                    grid-column: 6 / -1
-                    // margin-top: 0rem
+                    grid-column: 1 / -1
+                    margin-top: 1.5rem
+                    @media screen and (min-width: 992px)
+                         grid-column: 6 / -1
+                         margin-top: 0rem
 
                &:hover
                     .cardMain
@@ -327,17 +380,17 @@
                          padding-top: 2rem
                          h2
                               font-family: $avenirBook
-                              font-size: 1.85rem
+                              font-size: 2rem
                               color: rgba(#1d1d1d,1)
                               margin: 0
-                              line-height: 1em
+                              line-height: 1.5em
                               text-align: left
                          p
                               font-family: $avenirMedium
-                              font-size: .85rem
+                              font-size: 1.15rem
                               color: rgba(#303030,1)
                               margin: 0
-                              line-height: 1.5em
+                              line-height: 1.15em
                               text-align: left
                     .labelCard
                          position: absolute
@@ -362,11 +415,18 @@
                     .boxImg
                          width: 100%
                          overflow: hidden
+                         aspect-ratio: 200/138
+                         @media screen and (min-width: 992px)
+                              aspect-ratio: 200/140
+                         // @media screen and (min-width: 1200px)
+                         //      aspect-ratio: 200/140
                          img
                               width: 100%
-                              height: 100%
+                              height: auto
+                              max-height: 100%
                               object-fit: cover
                               transition: .5s ease-in all
+
                
           .viewPointer
                position: absolute
@@ -397,62 +457,45 @@
                     text-align: center
      .headerContenedor
           display: grid
-          grid-template-columns: 1.25fr 1fr
+          grid-template-columns: 1fr
+          @media screen and (min-width: 992px)
+               grid-template-columns: 1.25fr 1fr
           > div
                &:last-child
-                    padding: 3rem 5rem 0 0rem
+                    padding: 1rem 0rem 0 0rem
+                    @media screen and (min-width: 992px)
+                         padding: 3rem 4rem 0 0rem
                     @media screen and (min-width: 1200px)
                          padding: 3rem 8rem 0 0rem
           h2
                font-family: $avenirBook
-               font-size: 3.75rem
+               font-size: 2.5rem
                color: black
                letter-spacing: -.05em
                line-height: 1em
+               @media screen and (min-width: 992px)
+                    font-size: 4rem
                @media screen and (min-width: 1200px)
                     font-size: 4.5rem
           p
                font-family: $avenirMedium
-               font-size: 1.15rem
+               font-size: 1.25rem
                color: black
                line-height: 1.25em 
+               @media screen and (min-width: 992px)
+                    font-size: 1.1rem
                @media screen and (min-width: 1200px)
                     font-size: 1.25rem
 
 
-.newsContainer
-     position: relative
-     border: 0px solid red
-     height: 80px
-     overflow: hidden
-     background: #000
-     .content
-          position: absolute
-          display: inline-block
-          left: 50%
-          top: 50%
-          transform: translate(-50%,-50%)
-          white-space: nowrap
-          opacity: 0
-          .conentElements
-               display: flex
-               justify-content: flex-start
-               align-items: center
-               p
-                    margin: 0
-                    line-height: 1.5em
-                    font-family: $avenirMedium
-                    font-size: 1.5rem
-                    letter-spacing: -.05em
-                    color: white
-                    text-transform: uppercase
-
 .heroBanner
      width: 100%
-     height: 100vh
+     height: 65vh
      background: linear-gradient(45deg, #333ec3,#7d4a97, #67aa43, #d38274)
      background-size: 400% 400%
      animation: cambiar 10s ease infinite
+     @media screen and (min-width: 992px)
+          height: 92vh
      .heroContainer
           display: grid
           grid-template-columns: 1fr
@@ -464,26 +507,25 @@
                margin-bottom: 8rem
                align-self: end
                h1
-                    font-size: 5.5rem
+                    font-size: 3rem
                     color: white
                     line-height: 1em
                     font-family: $avenirBook
-                    
-                    @media screen and (min-width: 1200px)
+                    @media screen and (min-width: 992px)
                          font-size: 6rem
                     span
                          position: relative
                          &::before
                               content: ''
                               background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15.5" stroke="%23000"/><path fill="%23000" d="M16 6s.61 5.1 2.75 7.25C20.9 15.39 26 16 26 16s-5.1.61-7.25 2.75C16.61 20.9 16 26 16 26s-.61-5.1-2.75-7.25C11.1 16.61 6 16 6 16s5.1-.61 7.25-2.75C15.39 11.1 16 6 16 6z"/></svg>')
-                              width: 2rem
-                              height: 2rem
+                              width: 1.5rem
+                              height: 1.5rem
                               position: absolute
-                              top: 1.5rem
-                              right: -2.5rem
+                              top: 0rem
+                              right: -1.9rem
                               filter: invert(1)
-                              @media screen and (min-width: 1200px)
-                                   top: 1.75rem
+                              // @media screen and (min-width: 1200px)
+                              //      top: 1.75rem
 
 
 @keyframes cambiar

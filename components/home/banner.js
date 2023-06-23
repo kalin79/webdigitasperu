@@ -8,7 +8,7 @@ export default function Banner() {
      return (
           <>
                <div className={styles.heroBanner}>
-                    <div className="container fullHeight">
+                    <div className="containerGrid fullHeight">
                          <div className={styles.heroContainer}>
                               <div className={styles.contentCenter}>
                                    <h1>Somos Digitas<br /> <span>Perú</span></h1>
