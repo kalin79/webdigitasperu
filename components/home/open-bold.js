@@ -180,52 +180,52 @@ export default function OpenBold() {
                               >
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g1.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g2.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g3.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g4.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g5.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g6.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g7.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g8.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g9.jpeg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                                    <div className={`item ${styles.item}`}>
                                         <div className={`${styles.contentImg}`}>
-                                             <Image src="/assets/gallery/g10.jpg" alt="galeria 1" width={800} height={600} />
+                                             <Image src="/assets/unicornio.png" alt="galeria 1" width={800} height={600} />
                                         </div>
                                    </div>
                               </div>
